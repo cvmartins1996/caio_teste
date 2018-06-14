@@ -33,7 +33,7 @@ public class MotoristaController {
 	public String insertMotorista(@ModelAttribute Motorista motorista, Model model) {
 		
 		motoristaService.insertMotorista(motorista);
-		Model addAttribute = model.addAttribute("motorista", motoristaService.getAllMotoristas());
+		Model addAttribute = model.addAttribute("motoristas", motoristaService.getAllMotoristas());
 		return browser(addAttribute);
 	}
 	
@@ -52,7 +52,7 @@ public class MotoristaController {
 	@RequestMapping("/salvar-edicao-motorista")
 	public String salvarEdicao(@ModelAttribute Motorista motorista, Model model) {
 		motoristaService.updateMotorista(motorista);
-		Model addAttribute = model.addAttribute("motorista", motoristaService.getAllMotoristas());
+		Model addAttribute = model.addAttribute("motoristas", motoristaService.getAllMotoristas());
 		return browser(addAttribute);
 	}
 	

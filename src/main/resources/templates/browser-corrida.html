@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<th:block th:include="fragments/head :: head"></th:block>
+	<body>
+		<div th:replace="fragments/navbar :: navbar"></div>
+			<div th:if="${not #lists.isEmpty(motoristas)}">
+		    	<h2>Viagens</h2>
+			    <table>
+			        <tr>
+			            <th>Id</th>
+			            <th>Valor</th>
+			            <th>Passageiro</th>
+			            <th>Motorista</th>
+			        </tr>
+			        <tr th:each="motorista : ${motoristas}">
+			            <td th:text="${motorista.id}"></td>
+			            <td th:text="${motorista.nome}"></td>
+			            <td>
+							<a th:href="@{'/editar-motorista' + ${motorista.id}}"><i class="material-icons center">edit</i></a>
+			            </td>
+			            <td>
+			            	<a th:href="@{'/deletar-motorista' + ${motorista.id}}" onclick="return confirm('Voce tem certeza que deseja excluir esse item?');"><i class="material-icons center">delete</i></a>
+			            </td>
+			        </tr>
+			    </table>
+			</div>
+			<div th:if="${#lists.isEmpty(motoristas)}">
+			    <p> Ainda nao existem motoristas cadastrados no sistema!</p>
+			</div>
+		<div th:replace="fragments/footer :: footer"></div>
+		<div th:replace="fragments/script :: script"></div>
+	</body>
+</html>

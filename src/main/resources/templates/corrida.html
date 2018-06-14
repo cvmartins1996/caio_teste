@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<th:block th:include="fragments/head :: head"></th:block>
+	<body>
+		<div th:replace="fragments/navbar :: navbar"></div>
+		<div class="container">
+			<div class="row">
+				<form action="#" th:action="@{/inserir-corrida}" method="post" class="col s12" onsubmit="validarForm()">
+					<div class="row">
+					    <div class="input-field"> 
+				    		<input type="number" th:field="${corrida.valor}" class="obrigatorio" required="required"/>
+				    		<label for="valor">Valor: </label>
+					    </div>
+						<div class="input-field col s12">
+						    <select id="motoristas" th:field="*{motoristas}">
+						    	<option value="sel"> Selecione o Motorista</option>
+						      	<option th:each="motorista : ${motoristas}" th:value="${motorista.id}" th:utext="${motorista.nome}"></option>
+						    </select>
+					  	</div>	
+						<div class="input-field col s12">
+						    <select id="passageiros" th:field="*{passageiros}">
+						    	<option value="sel"> Selecione o Passageiro</option>
+						      	<option th:each="passageiro : ${passageiros}" th:value="${passageiro.id}" th:utext="${passageiro.nome}"></option>
+						    </select>
+					  	</div>	
+					</div>
+				   	<button class="btn waves-effect waves-light" type="submit">Salvar
+    					<i class="material-icons right">send</i>
+  					</button>
+			    	<button class="btn waves-effect waves-light" type="reset">Limpar</button>
+				</form>
+			</div>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+		<div th:replace="fragments/script :: script"></div>
+		<script th:inline="javascript">
+	
+			var validarForm = function(){
+				var erro = $(".obrigatorio");
+				if (erro.val() == null || erro.val() == ""){
+					alert("Preencha o campo");
+				}
+			}
+			
+			var validarSelectMotorista = function(){
+				var element = $("#motoristas");
+				var verificaSelect = element.options[element.selectIndex].value;
+				
+				if (verificaSelect == "sel"){
+					alert("Preencha o campo")
+				}
+					
+				}
+			}
+			
+			var validarSelectPassageiros = function(){
+				var element = $("#passageiros");
+				var verificaSelect = element.options[element.selectIndex].value;
+				
+				if (verificaSelect == "sel"){
+					alert("Preencha o campo")
+				}
+					
+				}
+			}
+	
+		</script>
+	</body>
+</html>

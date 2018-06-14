@@ -2,3 +2,7 @@
 	position: relative;
 	opacity: 1;
 }
+
+select {
+	display: block;
+}

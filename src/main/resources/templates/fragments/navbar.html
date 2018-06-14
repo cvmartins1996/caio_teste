@@ -4,10 +4,20 @@
 		<a href="/" th:href="@{'/'}" class="brand-logo">Home</a>
 		<ul class="right hide-on-med-and-down">
 			<li><a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Motorista</a></li>
+			<li><a class='dropdown-trigger btn' href='#' data-target='dropdown2'>Passageiro</a></li>
+			<li><a class='dropdown-trigger btn' href='#' data-target='dropdown3'>Corridas</a></li>
 		</ul>
 		<ul id='dropdown1' class='dropdown-content'>
     		<li><a href="motorista.html" th:href="@{'/motorista'}">Cadastrar Motorista</a></li>
     		<li><a href="motorista-browser.html" th:href="@{'/browser-motorista'}">Consultar Motoristas</a></li>
+  		</ul>
+		<ul id='dropdown2' class='dropdown-content'>
+    		<li><a href="motorista.html" th:href="@{'/passageiro'}">Cadastrar Passageiro</a></li>
+    		<li><a href="motorista-browser.html" th:href="@{'/browser-passageiro'}">Consultar Passageiros</a></li>
+  		</ul>
+		<ul id='dropdown3' class='dropdown-content'>
+    		<li><a href="motorista.html" th:href="@{'/corrida'}">Cadastrar Corrida</a></li>
+    		<li><a href="motorista-browser.html" th:href="@{'/browser-corrida'}">Consultar Corridas</a></li>
   		</ul>
 	</div>
 </nav>
