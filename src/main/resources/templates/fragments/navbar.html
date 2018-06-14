@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<nav class="blue" th:fragment="navbar">
+	<div class="nav-wrapper">
+		<a href="/" th:href="@{'/'}" class="brand-logo">Home</a>
+		<ul class="right hide-on-med-and-down">
+			<li><a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Motorista</a></li>
+		</ul>
+		<ul id='dropdown1' class='dropdown-content'>
+    		<li><a href="motorista.html" th:href="@{'/motorista'}">Cadastrar Motorista</a></li>
+    		<li><a href="motorista-browser.html" th:href="@{'/browser-motorista'}">Consultar Motoristas</a></li>
+  		</ul>
+	</div>
+</nav>
+
+
+ 
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<th:block th:include="fragments/head :: head"></th:block>
+	<body>
+		<div th:replace="fragments/navbar :: navbar"></div>
+		<div class="container">
+			<div class="row">
+				<form action="#" th:action="@{/salvar-edicao-motorista}" method="post" class="col s12">
+					<div class="row">
+					    <div class="input-field"> 
+				    		<input type="text" th:field="${motorista.nome}" class="obrigatorio" required="required"/>
+				    		<label for="nome">Nome do Motorista: </label>
+					    </div>
+					</div>
+					<div class="row">
+					    <div class="input-field"> 
+				    		<input type="text" th:field="${motorista.dataNascimento}" class="obrigatorio" required="required"/>
+				    		<label for="dataNascimento">Data de Nascimento: </label>
+					    </div>
+				  	</div>
+					<div class="row">
+					    <div class="input-field"> 
+				    		<input type="text" th:field="${motorista.cpf}" class="obrigatorio" required="required"/>
+				    		<label for="cpf">CPF: </label>
+					    </div>
+				   	</div>
+					<div class="row">
+					    <div class="input-field"> 
+				    		<input type="text" th:field="${motorista.modeloCarro}" class="obrigatorio" required="required"/>
+				    		<label for="modeloCarro">Modelo do Carro: </label>
+					    </div>
+				   	</div>
+					<div class="row">
+					    <p>
+						    <label>
+					    		<input type="checkbox" class="filled-in" checked="checked" th:field="${motorista.status}" />
+					    		<span>Status</span>
+						    </label> 
+					    </p>
+				   	</div>
+					<div class="row">
+					    <div class="input-field"> 
+				    		<input type="text" th:field="${motorista.sexo}" required="required"/>
+				    		<label for="sexo">Sexo: </label>
+					    </div>
+				   	</div>
+				   	<button class="btn waves-effect waves-light" type="submit">Salvar
+    					<i class="material-icons right">send</i>
+  					</button>
+				</form>
+			</div>
+		</div>
+		<div th:replace="fragments/footer :: footer"></div>
+		<div th:replace="fragments/script :: script"></div>
+	</body>
+</html>
