@@ -12,13 +12,13 @@
 				    		<label for="valor">Valor: </label>
 					    </div>
 						<div class="input-field col s12">
-						    <select id="motoristas" th:field="*{motoristas}">
+						    <select id="motoristas" th:field="*{motoristas}" name="motorista" th:name="motorista">
 						    	<option value="sel"> Selecione o Motorista</option>
 						      	<option th:each="motorista : ${motoristas}" th:value="${motorista.id}" th:utext="${motorista.nome}"></option>
 						    </select>
 					  	</div>	
 						<div class="input-field col s12">
-						    <select id="passageiros" th:field="*{passageiros}">
+						    <select id="passageiros" th:field="*{passageiros}" name="passageiro" >
 						    	<option value="sel"> Selecione o Passageiro</option>
 						      	<option th:each="passageiro : ${passageiros}" th:value="${passageiro.id}" th:utext="${passageiro.nome}"></option>
 						    </select>
@@ -34,12 +34,20 @@
 		<div th:replace="fragments/footer :: footer"></div>
 		<div th:replace="fragments/script :: script"></div>
 		<script th:inline="javascript">
-	
+			
+			$(document).ready(function() {
+				$("#motoristas").attr("name", "motorista");	
+				$("#passageiros").attr("name", "passageiro");	
+			})		
+			
+		
 			var validarForm = function(){
 				var erro = $(".obrigatorio");
 				if (erro.val() == null || erro.val() == ""){
 					alert("Preencha o campo");
 				}
+				validarSelectMotorista();
+				validarSelectPassageiros();
 			}
 			
 			var validarSelectMotorista = function(){
@@ -50,7 +58,6 @@
 					alert("Preencha o campo")
 				}
 					
-				}
 			}
 			
 			var validarSelectPassageiros = function(){
@@ -61,7 +68,6 @@
 					alert("Preencha o campo")
 				}
 					
-				}
 			}
 	
 		</script>

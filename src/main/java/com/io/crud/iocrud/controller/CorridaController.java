@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.io.crud.iocrud.model.Corrida;
 import com.io.crud.iocrud.model.Motorista;
+import com.io.crud.iocrud.model.Passageiro;
 import com.io.crud.iocrud.service.CorridaService;
 import com.io.crud.iocrud.service.MotoristaService;
 import com.io.crud.iocrud.service.PassageiroService;
@@ -37,8 +37,12 @@ public class CorridaController {
 	}
 	
 	@RequestMapping("/inserir-corrida")
-	public String insertCorrida(@ModelAttribute Corrida corrida, Model model, @ModelAttribute Motorista motorista) {
-		System.out.println(motorista.getId() +  " id" + " nome" + motorista.getNome());
+	public String insertCorrida(@ModelAttribute Corrida corrida, Model model, @ModelAttribute("motorista") Motorista motorista, @ModelAttribute("passageiro") Passageiro passageiro) {
+		
+		corrida.setIdMotorista(motorista.getId());
+		corrida.setIdPassageiro(passageiro.getId());
+		
+		corridaService.insertCorrida(corrida);
 		Model addAttribute = model.addAttribute("corridas", corridaService.getAllCorridas());
 		return browser(addAttribute);
 	}
@@ -47,23 +51,6 @@ public class CorridaController {
 	public String browser(Model model) {
 		model.addAttribute("corridas", corridaService.getAllCorridas());
 		return "browser-corrida";
-	}
-	
-	@RequestMapping("/editar-corrida{id}")
-	public String editar(@PathVariable Long id, Model model) {
-		return "editar-corrida";
-	}
-	
-	@RequestMapping("/salvar-edicao-corrida")
-	public String salvarEdicao(@ModelAttribute Corrida corrida, Model model) {
-		Model addAttribute = model.addAttribute("corridas", corridaService.getAllCorridas());
-		return browser(addAttribute);
-	}
-	
-	@RequestMapping("/deletar-corrida")
-	public String deletarCorrida(@PathVariable Long id, Model model) {
-		Model addAttribute = model.addAttribute("corridas", corridaService.getAllCorridas());
-		return browser(addAttribute);
 	}
 	
 }

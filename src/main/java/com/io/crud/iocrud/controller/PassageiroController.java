@@ -46,12 +46,15 @@ public class PassageiroController {
 	
 	@RequestMapping("/salvar-edicao-passageiro")
 	public String salvarEdicao(@ModelAttribute Passageiro passageiro, Model model) {
+		passageiroService.updatePassageiro(passageiro);
 		Model addAttribute = model.addAttribute("passageiros", passageiroService.getAllPassageiros());
 		return browser(addAttribute);
 	}
 	
 	@RequestMapping("/deletar-passageiro{id}")
 	public String deletarPassageiro(@PathVariable Long id, Model model) {
+		passageiroService.deleteOnePassageiro(id);
+		
 		Model addAttribute = model.addAttribute("passageiros", passageiroService.getAllPassageiros());
 		return browser(addAttribute);
 	}

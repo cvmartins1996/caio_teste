@@ -13,7 +13,8 @@ public class CorridaServiceImpl implements CorridaService {
 	
 	@Autowired
 	private CorridaRepository corridaRepository;
-	
+	@Autowired
+	private MotoristaService motoristaService;
 	
 	@Override
 	public void deleteCorrida(Corrida corrida) {
@@ -39,7 +40,7 @@ public class CorridaServiceImpl implements CorridaService {
 	}
 
 	private void verificaSeMotoristaEstaFerias(Corrida corrida) {
-		Motorista motorista = new MotoristaServiceImpl().getMotorista(corrida.getIdMotorista());
+		Motorista motorista = motoristaService.getMotorista(corrida.getIdMotorista());
 		if (!motorista.isStatus()) {
 			throw new IllegalArgumentException("Motorista está em periodo de ferias");
 		}
